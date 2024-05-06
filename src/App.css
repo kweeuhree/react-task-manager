@@ -1,5 +1,16 @@
 .App {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+/* all tasks */
+.all-tasks {
+  display: flex;
+  flex-direction: column;
+}
+
+.task {
+  border: solid red;
 }
