@@ -21,8 +21,14 @@ function App() {
     });
   };
 
-  const editTask = () => {
+  const editTask = (task) => {
     //replace old body with new body
+
+    //filter through tasks, if task ids match, filter out
+    // setTasks({
+    //   ...tasks,
+    //   allTasks: allTasks.filter((task) => task.taskId === taskId)
+    // })
   };
 
   const completeTask = () => {
@@ -33,7 +39,7 @@ function App() {
     // display what is 
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, callback) => {
     // handle user input
     e.preventDefault(); 
     const userInput = e.target.elements.task.value.trim();
@@ -41,7 +47,7 @@ function App() {
     if(!userInput) {
       alert('Include a task');
     } else {
-      addTask(userInput);
+      callback(userInput);
       e.target.reset();
     }
   };
@@ -49,13 +55,13 @@ function App() {
   return (
     <div className="App">
       {/* form container */}
-      <form className='task-form' onSubmit={handleSubmit}>
+      <form className='task-form' onSubmit={(e) => handleSubmit(e, addTask)}>
         <input type="text" name="task" placeholder='enter a new task'></input>
         <button type="submit">Add Task</button>
       </form>
       {/* all uncompleted tasks */}
       <div className='uncompleted-tasks'>
-        <AllTasks tasks={tasks.allTasks}/>
+        <AllTasks tasks={tasks.allTasks} editTask={editTask} completeTask={completeTask} handleSubmit={handleSubmit} deleteTask={deleteTask}/>
       </div>
       {tasks.showCompleted && (
         <div className='completed-tasks'>

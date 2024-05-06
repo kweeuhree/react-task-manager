@@ -6,6 +6,10 @@
 }
 
 /* all tasks */
+.task-container {
+  border: solid blue;
+}
+
 .all-tasks {
   display: flex;
   flex-direction: column;
